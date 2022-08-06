@@ -41,6 +41,19 @@ app.MapGet("/weatherforecast/{id}", (int id) =>
     return forecast;
 });
 
+app.MapGet("/product", () => new { id = 1 });
+
+app.MapGet("/weatherforecastjson/{id}", (int id) =>
+{
+    var forecast = new WeatherForecast
+    (
+        DateTime.Now.AddDays(id),
+        Random.Shared.Next(-20, 55),
+        summaries[Random.Shared.Next(summaries.Length)]
+    );
+    return forecast;
+});
+
 app.MapGet("/", () => "Hello world");
 
 app.MapPost("/weatherforecast", (string weather) => {
