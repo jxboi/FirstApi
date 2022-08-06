@@ -35,6 +35,26 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+app.MapGet("/weatherforecast/{id}", (int id) =>
+{
+    var forecast = summaries[id];
+    return forecast;
+});
+
+app.MapGet("/", () => "Hello world");
+
+app.MapPost("/weatherforecast", (string weather) => {
+    return weather + " added.";
+});
+
+app.MapPut("/weatherforecast", (string weather) => {
+    return weather + " updated.";
+});
+
+app.MapDelete("/weatherforecast", (int id) => {
+    return id + " removed.";
+});
+
 app.Run();
 
 record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
